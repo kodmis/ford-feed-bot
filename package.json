@@ -4,7 +4,9 @@
   "description": "Simple Telegram bot",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node main.js",
+    "start": "npm run dev"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/kodmis/ford-feed-bot/issues"
   },
-  "homepage": "https://github.com/kodmis/ford-feed-bot#readme"
+  "homepage": "https://github.com/kodmis/ford-feed-bot#readme",
+  "dependencies": {
+    "htmlparser2": "^3.9.2",
+    "http-proxy-agent": "^2.1.0"
+  }
 }
