@@ -3,12 +3,17 @@ const http = require('http');
 const proxyAgent = require('http-proxy-agent');
 const htmlparser = require('htmlparser2');
 
-function ParseTitlePage() {
+function ParseTitlePage(callback, hostname, proxyURL) {
 
-  const httpProxy = process.env.http_proxy || 'http://19.12.1.40:83';
-  const agent = new proxyAgent(httpProxy);
+  let agent;
+  if (proxyURL) {
+
+    console.log('using proxy server %j', proxyURL);
+    agent = new proxyAgent(proxyURL);
+  }
+
   const options = {
-    hostname: 'www.sinfest.net',
+    hostname: hostname,
     path: '/index.php',
     method: 'GET',
     headers: {
@@ -17,7 +22,12 @@ function ParseTitlePage() {
     agent
   };
   const opentagParserHandler = (name, attr) => {
-    if (name === 'img') console.log(attr.src)
+
+    if (name === 'img' && attr.src.indexOf('btphp') !== -1) {
+
+      console.log(`Parsed url: ${attr.src}`);
+      callback(`${hostname}/${attr.src}`);
+    }
   };
   const parser = new htmlparser.Parser({onopentag: opentagParserHandler}, {decodeEntities: true});
 
@@ -26,12 +36,9 @@ function ParseTitlePage() {
     response.on('end', () => parser.end());
   };
 
-  console.log('using proxy server %j', httpProxy);
   const request = http.get(options, responseHandler);
   request.on('error', (error) => console.error(error))
 }
 
-
-
-ParseTitlePage();
-//module.exports = ParseTitlePage;
+//ParseTitlePage((url => console.log(url)), "www.sinfest.net");
+module.exports = ParseTitlePage;
