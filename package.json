@@ -1,0 +1,19 @@
+{
+  "name": "ford-feed-bot",
+  "version": "0.0.1",
+  "description": "Simple Telegram bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kodmis/ford-feed-bot.git"
+  },
+  "author": "Dmitrij Kozin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kodmis/ford-feed-bot/issues"
+  },
+  "homepage": "https://github.com/kodmis/ford-feed-bot#readme"
+}
