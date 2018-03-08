@@ -3,8 +3,7 @@ const http = require('http');
 const proxyAgent = require('http-proxy-agent');
 const htmlparser = require('htmlparser2');
 
-function ParseTitlePage(callback, hostname, proxyURL) {
-
+function ParseTitlePage(callback, getURL, proxyURL) {
   let agent;
   if (proxyURL) {
 
@@ -13,7 +12,7 @@ function ParseTitlePage(callback, hostname, proxyURL) {
   }
 
   const options = {
-    hostname: hostname,
+    hostname: getURL,
     path: '/index.php',
     method: 'GET',
     headers: {
@@ -26,7 +25,7 @@ function ParseTitlePage(callback, hostname, proxyURL) {
     if (name === 'img' && attr.src.indexOf('btphp') !== -1) {
 
       console.log(`Parsed url: ${attr.src}`);
-      callback(`${hostname}/${attr.src}`);
+       callback(`${getURL}/${attr.src}`);
     }
   };
   const parser = new htmlparser.Parser({onopentag: opentagParserHandler}, {decodeEntities: true});
@@ -36,9 +35,9 @@ function ParseTitlePage(callback, hostname, proxyURL) {
     response.on('end', () => parser.end());
   };
 
-  const request = http.get(options, responseHandler);
-  request.on('error', (error) => console.error(error))
+  const clientRequest = http.get(options, responseHandler);
+  clientRequest.on('error', (error) => console.error(error))
 }
 
-//ParseTitlePage((url => console.log(url)), "www.sinfest.net");
+//ParseTitlePage((url => console.log(url)), "http://foto.carexpert.ru/Ford/p1/");
 module.exports = ParseTitlePage;

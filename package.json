@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node main.js",
+    "dev": "node -r dotenv/config bot.js",
     "start": "npm run dev"
   },
   "repository": {
@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/kodmis/ford-feed-bot#readme",
   "dependencies": {
+    "dotenv": "5.0.1",
     "htmlparser2": "^3.9.2",
-    "http-proxy-agent": "^2.1.0"
+    "http-proxy-agent": "^2.1.0",
+    "node-telegram-bot-api": "0.30.0"
   }
 }
