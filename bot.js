@@ -8,5 +8,5 @@ const sendToChannel = (url) => {
   tg.sendPhoto('@' + process.env.CHANNEL, url);
 };
 
-parser(sendToChannel,"www.sinfest.net");
+parser(sendToChannel,"http://foto.carexpert.ru/Ford/p1/");
 
