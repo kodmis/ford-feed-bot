@@ -1,6 +1,6 @@
 'use strict'
 const Telegram = require('node-telegram-bot-api');
-const parser = require('./main.js');
+const parser = require('./parser.js');
 const tg = new Telegram(process.env.TOKEN);
 
 const sendToChannel = (url) => {

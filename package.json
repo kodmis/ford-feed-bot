@@ -1,12 +1,12 @@
 {
   "name": "ford-feed-bot",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Simple Telegram bot",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node -r dotenv/config bot.js",
-    "start": "npm run dev"
+    "start": "node -r dotenv/config server.js"
   },
   "repository": {
     "type": "git",
