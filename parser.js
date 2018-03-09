@@ -141,5 +141,5 @@ function ParseTitlePage(callback, getURL, proxyURL) {
 
 
 
-//ParseTitlePage((url => console.log(url)), "http://foto.carexpert.ru/Ford/p1/");
+//ParseTitlePage((url => console.log(url)), process.env.STARTPAGE);
 module.exports = ParseTitlePage;
